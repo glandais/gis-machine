@@ -1,37 +1,64 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>OpenLayers Example</title>
-    <script src="http://openlayers.org/api/OpenLayers.js"></script>
-    </head>
-    <body>
-	<div id="layerswitcher"></div>
-      <div style="width:100%; height:100%" id="map"></div>
-      <script defer="defer" type="text/javascript">
-        var map = new OpenLayers.Map('map');
-		map.addControl(new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layerswitcher')}));
+	<title>Leaflet Layers Control Example</title>
+	<meta charset="utf-8" />
 
-        var mapserver_roads = new OpenLayers.Layer.WMS( "Mapserver roads",
-            "http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {layers: 'corse_roads'}, 
-            {singleTile: true, ratio: 1} );
-        map.addLayer(mapserver_roads);
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        var mapserver_points = new OpenLayers.Layer.WMS( "Mapserver points",
-            "http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {layers: 'corse_points'}, 
-            {singleTile: true, ratio: 1} );
-        map.addLayer(mapserver_points);
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+</head>
+<body>
+	<div id="map" style="width: 600px; height: 400px"></div>
 
-        var qgis_roads = new OpenLayers.Layer.WMS( "QGIS roads",
-            "http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/qgis/corse1.qgs&", {layers: 'corse_roads'}, 
-            {singleTile: true, ratio: 1} );
-        map.addLayer(qgis_roads);
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+	<script>
 
-        var qgis_points = new OpenLayers.Layer.WMS( "QGIS points",
-            "http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/qgis/corse1.qgs&", {layers: 'corse_points'}, 
-            {singleTile: true, ratio: 1} );
-        map.addLayer(qgis_points);
+var mapserverRoads0 = L.tileLayer.wms("http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {
+    layers: 'corse_roads',
+    format: 'image/png',
+    transparent: true
+});
+var mapserverRoads = L.tileLayer.wms("http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {
+    layers: 'corse_roads',
+    format: 'image/png',
+    transparent: true
+});
+var mapserverPoints = L.tileLayer.wms("http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {
+    layers: 'corse_points',
+    format: 'image/png',
+    transparent: true
+});
 
-        map.setCenter(new OpenLayers.LonLat(8, 42), 6);
-      </script>
+var qgisRoads = L.tileLayer.wms("http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/qgis/corse1.qgs&", {
+    layers: 'corse_roads',
+    format: 'image/png',
+    transparent: true
+});
+var qgisPoints = L.tileLayer.wms("http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/qgis/corse1.qgs&", {
+    layers: 'corse_points',
+    format: 'image/png',
+    transparent: true
+});
+		var map = L.map('map', {
+			center: [42, 8],
+			zoom: 6,
+			layers: [mapserverRoads], 
+			crs: L.CRS.EPSG4326
+		});
 
+		var baseLayers = {
+			"Mapserver roads 0": mapserverRoads0,
+		};
+
+		var overlays = {
+			"Mapserver roads": mapserverRoads,
+			"Mapserver points": mapserverPoints,
+			"QGIS roads": qgisRoads,
+			"QGIS points": qgisPoints,
+		};
+
+		L.control.layers(baseLayers, overlays).addTo(map);
+	</script>
 </body>
 </html>
