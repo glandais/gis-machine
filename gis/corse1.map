@@ -1,0 +1,49 @@
+MAP
+
+        NAME "corse"
+        EXTENT -180 -90 180 90 # Geographic
+        SIZE 800 400
+
+	  	PROJECTION
+		  "init=epsg:4326"
+		END
+
+		WEB
+			METADATA 
+			    WMS_ENABLE_REQUEST "*" 
+				WMS_SRS "EPSG:4326"
+			END
+		END
+		
+		
+        LAYER
+          CONNECTIONTYPE postgis
+          NAME "corse_roads"
+          CONNECTION "user=dbuser password=dbuser dbname=dbuser-db host=127.0.0.1 port=5432"
+          DATA "wkb_geometry from public.corse_roads" 
+          STATUS ON
+          TYPE LINE
+          CLASS
+                STYLE
+                  COLOR 0 0 0
+                END
+          END
+        END
+        LAYER
+          CONNECTIONTYPE postgis
+          NAME "corse_points"
+          CONNECTION "user=dbuser password=dbuser dbname=dbuser-db host=127.0.0.1 port=5432"
+          DATA "wkb_geometry from public.corse_points" 
+          STATUS ON
+          TYPE POINT
+          CLASS
+                STYLE
+				  SYMBOL 'circle'
+				  SIZE 9
+                  COLOR 0 0 0
+                END
+          END
+        END
+
+
+END # end of map file
