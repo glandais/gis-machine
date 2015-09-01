@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>OpenLayers Example</title>
+  <title>Corse1 ol</title>
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
     </head>
     <body>
@@ -11,22 +11,22 @@
 		map.addControl(new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layerswitcher')}));
 
         var mapserver_roads = new OpenLayers.Layer.WMS( "Mapserver roads",
-            "http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {layers: 'corse_roads'}, 
+            "http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/shared/gis/corse1.map&CRS=EPSG%3A4326&", {layers: 'corse_roads'}, 
             {singleTile: true, ratio: 1} );
         map.addLayer(mapserver_roads);
 
         var mapserver_points = new OpenLayers.Layer.WMS( "Mapserver points",
-            "http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/mapserver/corse1.map&CRS=EPSG%3A4326&", {layers: 'corse_points'}, 
+            "http://localhost/cgi-bin/mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/shared/gis/corse1.map&CRS=EPSG%3A4326&", {layers: 'corse_points'}, 
             {singleTile: true, ratio: 1} );
         map.addLayer(mapserver_points);
 
         var qgis_roads = new OpenLayers.Layer.WMS( "QGIS roads",
-            "http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/qgis/corse1.qgs&", {layers: 'corse_roads'}, 
+            "http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/shared/gis/corse1.qgs&", {layers: 'corse_roads'}, 
             {singleTile: true, ratio: 1} );
         map.addLayer(qgis_roads);
 
         var qgis_points = new OpenLayers.Layer.WMS( "QGIS points",
-            "http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/home/vagrant/qgis/corse1.qgs&", {layers: 'corse_points'}, 
+            "http://localhost/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&map=/shared/gis/corse1.qgs&", {layers: 'corse_points'}, 
             {singleTile: true, ratio: 1} );
         map.addLayer(qgis_points);
 

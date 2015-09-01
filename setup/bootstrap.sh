@@ -41,12 +41,6 @@ ogr2ogr -f PostgreSQL PG:"host=127.0.0.1 port=5432 dbname='dbuser-db' user='dbus
 ogr2ogr -f PostgreSQL PG:"host=127.0.0.1 port=5432 dbname='dbuser-db' user='dbuser' password='dbuser'" -nln corse_waterways waterways.shp
 ogr2ogr -f PostgreSQL PG:"host=127.0.0.1 port=5432 dbname='dbuser-db' user='dbuser' password='dbuser'" -nln corse_roads roads.shp
 
-mkdir /home/vagrant/qgis
-cp /shared/gis/corse1.qgs /home/vagrant/qgis/
-mkdir /home/vagrant/mapserver
-cp /shared/gis/corse1.map /home/vagrant/mapserver/
-chown -R vagrant /home/vagrant
-
 #cd /tmp
 #mkdir italie
 #cd italie
