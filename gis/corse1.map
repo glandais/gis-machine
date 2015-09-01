@@ -3,6 +3,9 @@ MAP
         NAME "corse"
         EXTENT -180 -90 180 90 # Geographic
         SIZE 800 400
+		
+		CONFIG "MS_ERRORFILE" "/var/www/html/ms_error.txt"
+		DEBUG 1
 
 	  	PROJECTION
 		  "init=epsg:4326"
@@ -15,6 +18,16 @@ MAP
 			END
 		END
 		
+		SYMBOL
+			NAME "triangle"
+			TYPE vector
+			POINTS
+				0 4
+				2 0
+				4 4
+				0 4
+			END
+		END
 		
         LAYER
           CONNECTIONTYPE postgis
@@ -38,9 +51,9 @@ MAP
           TYPE POINT
           CLASS
                 STYLE
-				  SYMBOL 'circle'
+				  SYMBOL 'triangle'
 				  SIZE 9
-                  COLOR 0 0 0
+                  COLOR 0 0 255
                 END
           END
         END
