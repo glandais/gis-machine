@@ -60,8 +60,8 @@ chown -R vagrant /home/vagrant
 #ogr2ogr -f PostgreSQL PG:"host=127.0.0.1 port=5432 dbname='dbuser-db' user='dbuser' password='dbuser'" -nln italie_waterways waterways.shp
 #ogr2ogr -f PostgreSQL PG:"host=127.0.0.1 port=5432 dbname='dbuser-db' user='dbuser' password='dbuser'" -nln italie_roads roads.shp
 
-sudo rm /var/www/html/index.html
-sudo cp /shared/gis/*.html /var/www/html/
+sudo rm -rf /var/www/html
+sudo ln -s /shared/gis /var/www/html
 
 echo "reboooooooooooooooot !"
 

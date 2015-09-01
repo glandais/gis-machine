@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
     vb.gui = true
     vb.customize [
                     "modifyvm", :id,
-                    "--memory", "2048",
+                    "--memory", "1024",
                     "--cpus", "2"
                  ]
   end
